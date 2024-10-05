@@ -23,9 +23,38 @@ class CommonCode {
                 expect(normalizedText).to.include(partialText); // Check for partial match
             });
     }
-    
+    static selectEntitySetUpDropdown(text) {
+        return cy.get('.mat-select-placeholder').contains(text)
+            .should('have.text', text)
+    }
+    static selectActiveEntity(text) {
+        return cy.get('#mat-option-3 > .mat-option-text').contains(text)
+            .should('have.text', text)
+    }
+    static entitySelectionPopScreenValidation() {
+        cy.get('.heading-wrapper > h6') // Adjust this selector as necessary
+            .should('contain.text', 'Switching to Demo Practice');
 
+        // Validate the Entity ID
+        cy.get('.item > :nth-child(1) > h6') // Adjust this selector as necessary
+            .should('contain.text', 'EN0026');
 
+        // Validate the Entity Name
+        cy.get(':nth-child(2) > h6')// Adjust this selector as necessary
+            .should('contain.text', 'Demo Practice');
+
+        // // Validate the Entity Address
+        // cy.get(':nth-child(3) > h6') // Adjust this selector as necessary
+        //     .should('contain.text', '3618 Center Street Albany OR 97321');
+
+        // Validate the OK button
+        cy.get('[class="btn-section"]') // Adjust this selector as necessary
+            .should('contain.text', 'OK');
+    }
+    static entitySelectionPopScreenOKButton(text) {
+        return cy.get('.btn-section > .btn').contains(text)
+            .should('have.text', text)
+    }
     static addReason() {
         return cy.get('[formcontrolname="reason"]')
     }

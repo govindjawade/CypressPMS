@@ -21,8 +21,15 @@ describe("Manage Modifier", function () {
         cy.wait(5000);
         // Validate that the "Manage Modifier" page has the correct title/content
         CommonCode.homePageValidation('Manage Modifier');
-        // Click the element that prompts to select an entity
         CommonCode.pleaseSelectAnEntityToViewTheRecords(' Please Select an Entity to View the Records.');
+        //select entity dropdown
+        CommonCode.selectEntitySetUpDropdown('Select Entity').click();
+        //select Proper entity
+        CommonCode.selectActiveEntity(' Demo Practice ').click();
+         // Validate the entity pop up text
+         CommonCode.entitySelectionPopScreenValidation();
+         //click on "OK" Button on entity switching pop up screen
+         CommonCode.entitySelectionPopScreenOKButton('OK').click();
 
     });
 });
