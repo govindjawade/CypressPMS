@@ -4,10 +4,28 @@ class CommonCode {
         return cy.get('[class="nav-text"]').contains(text)
             .should('have.text', text)
     }
-    
+
+
     static homePageValidation(text) {
         return cy.get('[class="page-title mb-0"]').should("have.text", text)
     }
+
+    // static pleaseSelectAnEntityToViewTheRecords(){
+    //     return cy.get('.heading').should('be.visible');
+    // }
+    static pleaseSelectAnEntityToViewTheRecords(partialText) {
+        return cy.get('.heading')
+            .should('exist') // Ensure the element exists
+            .invoke('text') // Get the text content of the element
+            .then((actualText) => { // Use a callback to process the actual text
+                const normalizedText = actualText.replace(/\s+/g, ' ').trim(); // Normalize whitespace
+                cy.log(`Actual text: "${normalizedText}"`); // Log the normalized text for debugging
+                expect(normalizedText).to.include(partialText); // Check for partial match
+            });
+    }
+    
+
+
     static addReason() {
         return cy.get('[formcontrolname="reason"]')
     }

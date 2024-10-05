@@ -13,13 +13,16 @@ describe("Manage Modifier", function () {
         let modifier_code = CommonCode.RandomAlphaNUmericData(2);
         let modifier_description = CommonCode.RandomDescription(4);
 
-        // Ensure the entity setup menu can be clicked
+        // Ensure the "Entity Setup" menu can be clicked
         CommonCode.clickEntitySetUpMenu('Entity Setup').click({ force: true });
         cy.wait(5000);
+        // Click on the "Manage Modifiers" menu option
         Modifier.clickModifierMenu('Manage Modifiers').click({ force: true });
-        CommonCode.homePageValidation('Manage Modifier').click({ force: true });
+        cy.wait(5000);
+        // Validate that the "Manage Modifier" page has the correct title/content
+        CommonCode.homePageValidation('Manage Modifier');
+        // Click the element that prompts to select an entity
+        CommonCode.pleaseSelectAnEntityToViewTheRecords(' Please Select an Entity to View the Records.');
 
-        
-       
     });
 });
