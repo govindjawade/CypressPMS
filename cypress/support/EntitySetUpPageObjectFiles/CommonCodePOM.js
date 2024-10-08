@@ -55,6 +55,11 @@ class CommonCode {
         return cy.get('.btn-section > .btn').contains(text)
             .should('have.text', text)
     }
+
+    static addedToastMessage(text) {
+        return cy.get('#toast-container > .ng-trigger').contains(text)
+            .should('have.text', text)
+    }
     static addReason() {
         return cy.get('[formcontrolname="reason"]')
     }
@@ -308,19 +313,27 @@ class CommonCode {
     }
 
     static RandomAlphaNUmericData(len) {
-        function generateRandomString(length) {
-            let result = "";
-            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            for (let i = 0; i < length; i++) {
-                result += characters.charAt(
-                    Math.floor(Math.random() * characters.length)
-                );
-            }
-            return result;
+        let character = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < len; i++) {
+            result = result + character.charAt(Math.floor(Math.random() * character.length))
         }
-        const randomString = generateRandomString(len);
-        return randomString;
+        return result;
     }
+    static getRandomICD10Code() {
+        const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Random uppercase letter (A-Z)
+        const digit1 = Math.floor(Math.random() * 10); // Random digit (0-9)
+        const digit2 = Math.floor(Math.random() * 10); // Random digit (0-9)
+        const digit3 = Math.floor(Math.random() * 10); // Random digit (0-9)
+        const decimalPart = (Math.random() * 9).toFixed(3); // Random decimal number with 3 digits
+        const finalLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // Another random letter
+    
+        return `${letter}${digit1}${digit2}.${digit3}${decimalPart}${finalLetter}`;
+        
+    }
+    
+    
+
 
     // static RandomDataMinMax() {
     //     const minMaxChars = {
@@ -372,18 +385,14 @@ class CommonCode {
 
 
     static RandomDescription(len) {
-        function generateRandomString(length) {
-            let result = "";
-            const characters = "0123456789";
-            for (let i = 0; i < length; i++) {
-                result += characters.charAt(
-                    Math.floor(Math.random() * characters.length)
-                );
-            }
-            return result;
+        let character = '0123456789';
+        let result = 'Separately Evaluation'
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(
+                Math.floor(Math.random() * characters.length)
+            );
         }
-        const randomDescription = 'Test Description' + generateRandomString(len);
-        return randomDescription;
+        return result;
     }
 
     static Random(len) {

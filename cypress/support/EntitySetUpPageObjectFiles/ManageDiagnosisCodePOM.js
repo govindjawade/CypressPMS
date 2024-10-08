@@ -1,6 +1,7 @@
 import CommonCode from "./CommonCodePOM"
-class Modifier {
-    static clickModifierMenu(text) {
+class ManageDiagnosisCode
+{
+    static clickManageDiagnosisCodeMenu(text) {
         return cy.get('[class="nav-text"]').contains(text)
             .should('have.text', text)
     }
@@ -12,15 +13,15 @@ class Modifier {
         return cy.get('[type="button"]').contains(text)
             .should('have.text', text)
     }
-    static addModifier() {
-        return cy.get('[formcontrolname="modifier"]')
+    static addManageDiagnosisCodeMenu() {
+        return cy.get('[formcontrolname="diagnosisCode"]')
     }
     static addDescription() {
         return cy.get('[formcontrolname="description"]')
 
     }
 
-    static clickOnAddModifierAddForm(text) {
+    static clickOnAddManageDiagnosisCodeAddForm(text) {
         return cy.get('[type="submit"]').contains(text)
             .should('have.text', text)
     }
@@ -38,9 +39,9 @@ class Modifier {
                 cy.wait(4000)
                 CommonCode.clickEntitySetupTab('Entity Setup').click({ force: true })
                 cy.wait(4000)
-                Modifier.clickApprovalWindowMenu('Approval Window').click()
-                cy.wait(4000)
-                Modifier.searchAddedCode()
+                ManageDiagnosisCode.clickApprovalWindowMenu('Approval Window').click()
+                cy.wait(10000)
+                ManageDiagnosisCode.searchAddedCode()
 
             }
         })
@@ -51,8 +52,8 @@ class Modifier {
     }
     static searchAddedCode() {
 
-        cy.readFile('C:\\Users\\Admin\\Desktop\\PMS\\CypressPMS\\cypress\\fixtures\\EntitySetupManageModifier.json').then((searchkey) => {
-            cy.get('[placeholder="Master File Entry"]').type(searchkey.ModifierDescription)
+        cy.readFile('C:\\Users\\Admin\\Desktop\\PMS\\CypressPMS\\cypress\\fixtures\\EntitySetupDiagnosisCodeDescription.json').then((searchkey) => {
+            cy.get('[placeholder="Master File Entry"]').type(searchkey.DiagnosisCodeDescription)
             cy.get('[placeholder="Master File Entry"]').type('{enter}')
             cy.wait(4000)
             cy.get('tbody td:nth-child(8)').each(($row) => {
@@ -72,4 +73,4 @@ class Modifier {
         })
     }
 }
-export default Modifier;
+export default ManageDiagnosisCode;
