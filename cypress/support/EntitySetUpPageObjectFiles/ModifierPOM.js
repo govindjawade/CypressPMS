@@ -36,11 +36,7 @@ class Modifier {
             else {
                 CommonCode.addedToastMessage(' Record added successfully. ');
                 cy.wait(4000)
-                CommonCode.clickEntitySetupTab('Entity Setup').click({ force: true })
-                cy.wait(4000)
-                Modifier.clickApprovalWindowMenu('Approval Window').click()
-                cy.wait(4000)
-                Modifier.searchAddedCode()
+                
 
             }
         })

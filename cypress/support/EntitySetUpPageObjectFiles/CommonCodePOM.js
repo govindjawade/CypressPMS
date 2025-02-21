@@ -24,11 +24,11 @@ class CommonCode {
             });
     }
     static selectEntitySetUpDropdown(text) {
-        return cy.get('.mat-select-placeholder').contains(text)
+        return cy.get('#mat-select-value-7 > .mat-mdc-select-placeholder').contains(text)
             .should('have.text', text)
     }
     static selectActiveEntity(text) {
-        return cy.get('#mat-option-3 > .mat-option-text').contains(text)
+        return cy.get('#mat-option-10 > .mdc-list-item__primary-text').contains(text)
             .should('have.text', text)
     }
     static entitySelectionPopScreenValidation() {
@@ -37,7 +37,7 @@ class CommonCode {
 
         // Validate the Entity ID
         cy.get('.item > :nth-child(1) > h6') // Adjust this selector as necessary
-            .should('contain.text', 'EN0026');
+            .should('contain.text', 'EN001');
 
         // Validate the Entity Name
         cy.get(':nth-child(2) > h6')// Adjust this selector as necessary

@@ -9,7 +9,7 @@ describe("Manage Diagnosis Code", function () {
     it("Add Manage Diagnosis Code and validate in Approval Window", function () {
         cy.visit("https://pms.hplbusiness.com/manage-user");
         // Debugging: wait for 2 seconds to see if the page loads properly
-        cy.wait(6000);
+        cy.wait(10000);
         // Ensure the "Entity Setup" menu can be clicked
         CommonCode.clickEntitySetUpMenu('Entity Setup').click({ force: true });
         cy.wait(5000);

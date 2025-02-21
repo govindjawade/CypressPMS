@@ -5,16 +5,16 @@ describe("Manage Procedure Code", function () {
         cy.viewport(1366, 768);
         cy.login("https://pms.hplbusiness.com/login", "ana.H@yopmail.com", "Ana@123");
     });
-    
+
     it("Add Manage Procedure Code and validate in Approval Window", function () {
         cy.visit("https://pms.hplbusiness.com/manage-user");
         // Debugging: wait for 2 seconds to see if the page loads properly
-        cy.wait(6000);
+        cy.wait(10000);
         // Ensure the "Entity Setup" menu can be clicked
         CommonCode.clickEntitySetUpMenu('Entity Setup').click({ force: true });
         cy.wait(5000);
         // Click on the "Manage Procedure Code" menu option
-        ProcedureCode.clickProcedureCodeMenu('Manage Procedure Code').click({ force: true });
+        ProcedureCode.clickProcedureCodeMenu('Manage Procedure Codes').click({ force: true });
         cy.wait(5000);
         // Validate that the "Manage Procedure Code" page has the correct title/content
         CommonCode.homePageValidation('Manage Procedure Code');

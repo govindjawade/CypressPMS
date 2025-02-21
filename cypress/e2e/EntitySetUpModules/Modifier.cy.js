@@ -4,20 +4,20 @@ import CommonCode from "../../support/EntitySetUpPageObjectFiles/CommonCodePOM";
 describe("Manage Modifier", function () {
     beforeEach(() => {
         cy.viewport(1366, 768);
-        cy.login("https://pms.hplbusiness.com/login", "ana.H@yopmail.com", "Ana@123");
+        cy.login("https://stagingpms.ospbiz.com/login", "govindjawade19@gmail.com", "Admin@55443322");
     });
     it("Add Modifier and validate in Approval Window", function () {
-        cy.visit("https://pms.hplbusiness.com/manage-user");
+        cy.visit("https://stagingpms.ospbiz.com/manage-user");
         // Debugging: wait for 2 seconds to see if the page loads properly
         cy.wait(6000);
         // Ensure the "Entity Setup" menu can be clicked
-        CommonCode.clickEntitySetUpMenu('Entity Setup').click({ force: true });
+        CommonCode.clickEntitySetUpMenu('Entity Setups').click({ force: true });
         cy.wait(5000);
         // Click on the "Manage Modifiers" menu option
         Modifier.clickModifierMenu('Manage Modifiers').click({ force: true });
         cy.wait(5000);
         // Validate that the "Manage Modifier" page has the correct title/content
-        CommonCode.homePageValidation('Manage Modifier');
+        CommonCode.homePageValidation('Manage Modifiers');
         CommonCode.pleaseSelectAnEntityToViewTheRecords(' Please Select an Entity to View the Records.');
         //select entity dropdown
         CommonCode.selectEntitySetUpDropdown('Select Entity').click();
@@ -30,9 +30,9 @@ describe("Manage Modifier", function () {
         
         //add button validation
         cy.wait(4000);
-        Modifier.addButtonValidation(' Add Modifier');
+        Modifier.addButtonValidation(' Add');
         //clickOnAddButton
-        Modifier.clickOnAddButton(' Add Modifier').click();
+        Modifier.clickOnAddButton(' Add').click();
         let modifier_code = CommonCode.RandomAlphaNUmericData(2);
         let modifier_description = CommonCode.RandomDescription(10);
         // Add a modifier code and ensure its length is at least 2 characters

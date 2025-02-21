@@ -82,6 +82,41 @@ import 'cypress-iframe';
 // );
 
 
+// Cypress.Commands.add("login", (url, email, password) => {
+//   cy.session([url, email, password], () => {
+//     cy.visit(url);
+//     cy.wait(4000);
+//     cy.get("#mat-input-0").type(email);
+//     cy.wait(5000);
+//     cy.get("#mat-input-1").type(password);
+//     cy.wait(4000);
+//     // cy.get('.mat-checkbox-inner-container').click({force:true})
+//     // cy.wait(4000);
+//     cy.get('[class="btn btn-primary login my-1"]').contains('Log In').click();
+//     cy.wait(4000);
+//     cy.get(".div-otp-wrapper").find("input").eq(0).type("555555");
+//     cy.wait(5000);
+//     cy.get('[style="width: 304px; height: 78px;"] > div > iframe').then(
+//       function ($ele) {
+//         var ifele = $ele.contents().find(".recaptcha-checkbox-border");
+//         cy.wrap(ifele).click();
+//         cy.pause();
+//         cy.get('[class="btn btn-primary login"]').click();
+//         cy.wait(6000);
+       
+//         Cypress.on('uncaught:exception', (err, runnable) => {
+//           return false
+//         })
+       
+//       },
+//       {
+//         cacheAcrossSpecs: true,
+//       }
+//     );
+ 
+//   });
+// })
+ 
 Cypress.Commands.add("login", (url, email, password) => {
   cy.session([url, email, password], () => {
     cy.visit(url);
@@ -92,32 +127,21 @@ Cypress.Commands.add("login", (url, email, password) => {
     cy.wait(4000);
     // cy.get('.mat-checkbox-inner-container').click({force:true})
     // cy.wait(4000);
-    cy.get('[class="btn btn-primary login my-1"]').contains('Sign In').click();
+    cy.get('[class="btn btn-primary login my-1"]').contains('Log In').click();
     cy.wait(4000);
     cy.get(".div-otp-wrapper").find("input").eq(0).type("555555");
     cy.wait(5000);
-    cy.get('[style="width: 304px; height: 78px;"] > div > iframe').then(
-      function ($ele) {
-        var ifele = $ele.contents().find(".recaptcha-checkbox-border");
-        cy.wrap(ifele).click();
-        cy.pause();
-        cy.get('[class="btn btn-primary login"]').click();
-        cy.wait(6000);
-       
-        Cypress.on('uncaught:exception', (err, runnable) => {
-          return false
-        })
-       
-      },
-      {
-        cacheAcrossSpecs: true,
-      }
-    );
- 
+    // cy.get('[class="btn btn-primary login"]').click();
+    // cy.wait(6000);
+    cy.get('[class="btn btn-primary login"]').then(($ele) => {
+      // Use the element provided in the 'then' block
+      cy.wrap($ele).click(); // Wrap and click the same element
+      cy.wait(6000);         // Wait for 6 seconds
+    }, {
+      cacheAcrossSpecs: true // Keep the caching option
+    });
   });
-})
- 
-
+});
 
 Cypress.Commands.add('SecurityQuestions', () => {
   cy.fixture('SecurityQuestions.json').then((questions) => {
